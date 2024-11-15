@@ -30,6 +30,11 @@ ghg$AlpineV <- ifelse(ghg$Alpine == "yes",1,0)
 # binary variable for known hydropower
 ghg$HydroV <- ifelse(ghg$hydropower == "yes",1,0)
 
+#Problem 1:The authors of the reservoir greenhouse gas study recommend using the following transformation for CO2 data: 1 / (CO2 + 1000)
+#Use the transformation and design a regression analysis to present to water managers 
+#about the impact of reservoir characteristics on carbon dioxide fluxes. In designing your regression, you should consider the environmental conditions 
+#that impact carbon dioxide fluxes, the availability of data, and the assumptions of ordinary least squares regression. 
+#Create a regression table including a R2 and the sample size with paragraph summary of the findings that can be presented to water managers.
 # multiple regression
 # creates a model object
 mod.full <- lm(log.ch4 ~ airTemp+
@@ -171,14 +176,6 @@ ggplot() +
   theme_classic()+
   labs(x="year", y="Evapotranspiration (in)")
 
-#Problem 1:The authors of the reservoir greenhouse gas study recommend using the following transformation for CO2 data: 1 / (CO2 + 1000)
-#Use the transformation and design a regression analysis to present to water managers 
-#about the impact of reservoir characteristics on carbon dioxide fluxes. In designing your regression, you should consider the environmental conditions 
-#that impact carbon dioxide fluxes, the availability of data, and the assumptions of ordinary least squares regression. 
-#Create a regression table including a R2 and the sample size with paragraph summary of the findings that can be presented to water managers.
-
-
-
 #Problem 2: Decompose the evapotranspiration time series for almonds, pistachios, fallow/idle fields, corn, and table grapes. 
 #Evaluate differences in the observations, trends, and seasonality of the data between the different crops. 
 #Write a summary of your evaluation for a water manager that is interested in examining how irrigation can affect evapotranspiration. 
@@ -304,7 +301,7 @@ fallow_idle_lands_model_2
 fallow_idle_lands_fit1 <- fallow_idle_lands_y - residuals(fallow_idle_lands_model) 
 fallow_idle_lands_fit2 <- fallow_idle_lands_y - residuals(fallow_idle_lands_model_2)
 #plot data
-plot(pistachio_y)
+plot(fallow_idle_lands_y)
 # plot fit
 points(fallow_idle_lands_fit1, type = "l", col = "orange3", lty = 2, lwd=2)
 points(fallow_idle_lands_fit2, type = "l", col = "turquoise3", lty = 2, lwd=2)
